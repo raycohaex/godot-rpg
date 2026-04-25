@@ -1,6 +1,6 @@
 class_name InventoryUI extends Control
 
-const TILE_SIZE: int = 32
+const TILE_SIZE: int = 58
 
 @export var inventory_component: InventoryComponent
 @export var item_ui_scene: PackedScene
@@ -8,6 +8,7 @@ const TILE_SIZE: int = 32
 
 func _ready() -> void:
 	visible = false
+	inventory_component.inventory_changed.connect(_refresh_ui)
 	
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("inventory"):
@@ -39,10 +40,10 @@ func _refresh_ui() -> void:
 		var new_scene = item_ui_scene.instantiate()
 		item_container.add_child(new_scene)
 		
-		
 		var position: Vector2i = item.grid_position * TILE_SIZE
 		var size: Vector2i = item.data.item_grid_size * TILE_SIZE
 		
+		new_scene.item_clicked.connect(_on_slot_clicked)
 		new_scene.position = Vector2(position)
 		new_scene.size.x = size.x
 		new_scene.size.y = size.y
@@ -55,3 +56,6 @@ func _on_background_panel_mouse_entered() -> void:
 
 func _on_background_panel_mouse_exited() -> void:
 	DragManager.current_hovered_container = null
+
+func _on_slot_clicked(clicked_item: InventoryItem, ui_node: InventoryItemUI) -> void:
+	DragManager.pick_up_item(clicked_item, ui_node, inventory_component)

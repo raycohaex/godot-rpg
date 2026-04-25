@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b5sewdji0knuw" path="res://Scripts/Inventory/inventory_ui.gd" id="1_5lit7"]
 [ext_resource type="PackedScene" uid="uid://bbq34nfq25pa1" path="res://Scene/Inventory/inventory_item_ui.tscn" id="2_4msr4"]
-[ext_resource type="Texture2D" uid="uid://bedc3kcqjvmcb" path="res://UI/Hud/inventory.png" id="3_fhy7j"]
+[ext_resource type="Texture2D" uid="uid://diuqb3satk1vl" path="res://UI/Hud/inventory.png" id="3_fhy7j"]
 
 [node name="InventoryUI" type="Control" unique_id=1783148493]
 layout_mode = 3
@@ -12,6 +12,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_5lit7")
+tile_gap = 4
 item_ui_scene = ExtResource("2_4msr4")
 
 [node name="CenterContainer" type="CenterContainer" parent="." unique_id=915039005]

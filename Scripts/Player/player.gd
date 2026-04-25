@@ -65,15 +65,17 @@ func drop_item_in_world(item: InventoryItem):
 	_shapecast.force_shapecast_update()
 	var culling_percentage: float = _shapecast.get_closest_collision_safe_fraction()
 	var target_pos: Vector3 = _shapecast.target_position * culling_percentage
+	# We need to make sure target_pos.y is always like 20% below the head so it doesnt clip.
+	target_pos.y = _head.position.y * 0.8
 	
 	var new_item_3d: Node = item.data.drop_scene.instantiate()
-	
-	# We have to convert the target position from local (player's shapecast) to
-	# where that related in the world.
-	var global_drop_pos: Vector3 = _shapecast.to_global(target_pos)
-	new_item_3d.global_position = global_drop_pos
+	new_item_3d.quantity = item.quantity
 	
 	# Get the "world" as a parent to spawn the item in, or in a future maybe a worlditem group node.
 	var world = get_tree().current_scene
 	world.add_child(new_item_3d)
 	
+	# We have to convert the target position from local (player's shapecast) to
+	# where that related in the world.
+	var global_drop_pos: Vector3 = _shapecast.to_global(target_pos)
+	new_item_3d.global_position = global_drop_pos

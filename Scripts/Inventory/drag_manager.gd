@@ -31,6 +31,11 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and not event.pressed:
 			if is_dragging:
+				if not source_inventory.items.has(dragged_item_data):
+					push_warning("DragManager: Exploit prevented! Item no longer in source inventory.")
+					_cancel_drag()
+					return
+					
 				var all_zones = get_tree().get_nodes_in_group("item_drop_zone")
 				var mouse_pos = get_viewport().get_mouse_position()
 				var item_dropped: bool = false
@@ -50,3 +55,10 @@ func _input(event: InputEvent) -> void:
 				is_dragging = false
 				dragged_item_data = null # Assign null, otherwise it would be deleted
 				drag_visual.queue_free()
+
+func _cancel_drag() -> void:
+	is_dragging = false
+	dragged_item_data = null
+	source_inventory = null
+	if drag_visual:
+		drag_visual.queue_free()

@@ -2,7 +2,7 @@ class_name InventoryItemUI extends Control
 
 @onready var item_image: TextureRect = $ItemImage
 @onready var item_label: Label = $ItemLabel
-signal item_clicked(item_data: InventoryItem)
+signal item_clicked(item_data: InventoryItem, ui_node: InventoryItemUI)
 
 var item: InventoryItem:
 	set(value):
@@ -22,5 +22,4 @@ func update_visuals() -> void:
 func _gui_input(event: InputEvent):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.pressed:
-			# Tell the global manager we picked this up
-			DragManager.pick_up_item(item, self)
+			item_clicked.emit(item, self)

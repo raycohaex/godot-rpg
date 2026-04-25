@@ -13,12 +13,14 @@
 [ext_resource type="AudioStream" uid="uid://cq41g4lmn7g6l" path="res://Sounds/Footstep/footstep_4.ogg" id="10_b7lwm"]
 [ext_resource type="Script" uid="uid://di4sm0fiysbtx" path="res://Scripts/Inventory/inventory_component.gd" id="12_i14n3"]
 [ext_resource type="PackedScene" uid="uid://bhwe6vydkj2eg" path="res://Scene/Player/control.tscn" id="13_wlxov"]
+[ext_resource type="Texture2D" uid="uid://y23l61ix681n" path="res://UI/Hud/crosshair.png" id="14_b7lwm"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_86ru7"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_wlxov"]
 
 [node name="FirstPersonCharacter3D" type="CharacterBody3D" unique_id=1827426903]
+collision_layer = 2
 script = ExtResource("1_pg5qe")
 max_speed = 5.0
 
@@ -32,9 +34,10 @@ shape = SubResource("CapsuleShape3D_86ru7")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Head" unique_id=1988166939]
+fov = 65.0
 
 [node name="InteractionSensor" type="RayCast3D" parent="Head/Camera3D" unique_id=1158285247 node_paths=PackedStringArray("inventory")]
-target_position = Vector3(0, 0, -2.5)
+target_position = Vector3(0, 0, -3)
 collision_mask = 4
 script = ExtResource("2_2ywee")
 inventory = NodePath("../../../InventoryComponent")
@@ -68,7 +71,28 @@ input = NodePath("../../PlayerInput")
 script = ExtResource("12_i14n3")
 metadata/_custom_type_script = "uid://di4sm0fiysbtx"
 
+[node name="HUD" type="CanvasLayer" parent="." unique_id=262798964]
+layer = 20
+
+[node name="ColorRect" type="TextureRect" parent="HUD" unique_id=2136908041]
+z_index = 13
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -37.5
+offset_top = -37.5
+offset_right = 37.5
+offset_bottom = 37.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("14_b7lwm")
+expand_mode = 1
+
 [node name="InventoryUI" parent="." unique_id=1783148493 node_paths=PackedStringArray("inventory_component") instance=ExtResource("13_wlxov")]
+z_index = 14
 inventory_component = NodePath("../InventoryComponent")
 
 [node name="ShapeCast3D" type="ShapeCast3D" parent="." unique_id=1885527627]

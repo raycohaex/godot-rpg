@@ -1,7 +1,9 @@
 class_name InventoryComponent extends Node
 
-@export var grid_size: Vector2i = Vector2i(10, 5) 
+@export var grid_size: Vector2i = Vector2i(9, 8) 
 @export var items: Array[InventoryItem] = []
+
+signal inventory_changed()
 
 func has_space_for(target_pos: Vector2i, item_size: Vector2i) -> bool:
 	# Boundary check on whether the item fits
@@ -86,7 +88,9 @@ func move_item(item: InventoryItem, target_pos: Vector2i) -> bool:
 func get_items_by_type(item_type: ItemData) -> Array[InventoryItem]:
 	return items.filter(func(item): return item.data == item_type)
 			
-			
+func remove_item(item: InventoryItem) -> void:
+	items.erase(item)			
+	inventory_changed.emit()
 
 func get_item_at(x: int, y: int) -> InventoryItem:
 	for item in items:
