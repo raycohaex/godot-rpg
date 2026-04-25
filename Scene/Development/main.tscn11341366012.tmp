@@ -1,0 +1,81 @@
+[gd_scene format=3 uid="uid://d7j827glattc"]
+
+[ext_resource type="PackedScene" uid="uid://crr3vvbg5fhfk" path="res://Scripts/Player/first_person_player.tscn" id="1_d14j6"]
+[ext_resource type="PackedScene" uid="uid://dtpaukmvyhpck" path="res://Scene/Items/Food/apple.tscn" id="2_tm3r7"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_tm3r7"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_d14j6"]
+
+[sub_resource type="Sky" id="Sky_tm3r7"]
+sky_material = SubResource("ProceduralSkyMaterial_d14j6")
+
+[sub_resource type="Environment" id="Environment_86ru7"]
+background_mode = 2
+sky = SubResource("Sky_tm3r7")
+ambient_light_source = 3
+ambient_light_color = Color(0.42365062, 0.42365065, 0.42365062, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_86ru7"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_tm3r7"]
+data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
+
+[node name="Main" type="Node3D" unique_id=1178813936]
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="." unique_id=165502057]
+transform = Transform3D(35.31426, 0, 0, 0, 0.7102941, 0, 0, 0, 35.24144, 0, -0.37026107, 0)
+use_collision = true
+mesh = SubResource("BoxMesh_tm3r7")
+
+[node name="CharacterBody3D" parent="." unique_id=1827426903 instance=ExtResource("1_d14j6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.005822897, 0, 0.003782034)
+
+[node name="Lighting" type="Node3D" parent="." unique_id=972447620]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Lighting" unique_id=841525790]
+environment = SubResource("Environment_86ru7")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Lighting" unique_id=4676018]
+transform = Transform3D(0.94273466, -0.051838458, 0.3294907, -0.33354366, -0.14651732, 0.9312795, 0, -0.987849, -0.15541734, 0, 4.6541743, 0)
+
+[node name="Obstacles" type="Node" parent="." unique_id=559126502]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Obstacles" unique_id=1410528741]
+transform = Transform3D(0.81070626, 0, 0.58545315, 0, 1, 0, -0.58545315, 0, 0.81070626, -2.4969473, 0.40805054, -6.433999)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Obstacles/StaticBody3D" unique_id=1006701845]
+transform = Transform3D(5.669084, 0, 0, 0, 5.0266743, 0, -2.3841858e-07, 0, 3.9995782, 0, 0, 0)
+mesh = SubResource("BoxMesh_86ru7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/StaticBody3D" unique_id=769709605]
+transform = Transform3D(5.669084, 0, 0, 0, 5.0266743, 0, -2.3841858e-07, 0, 3.9995782, 0, 0, 0)
+shape = SubResource("ConcavePolygonShape3D_tm3r7")
+
+[node name="Apple" parent="." unique_id=1766726480 instance=ExtResource("2_tm3r7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4966915, 0.40366134, -0.4779096)
+quantity = 5
+
+[node name="Apple2" parent="." unique_id=37352197 instance=ExtResource("2_tm3r7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3757284, 0.40366134, -0.4779096)
+quantity = 5
+
+[node name="Apple3" parent="." unique_id=1826181372 instance=ExtResource("2_tm3r7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8760602, 0.40366134, -0.4779096)
+quantity = 5
+
+[node name="Apple4" parent="." unique_id=284961423 instance=ExtResource("2_tm3r7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8760602, 0.40366134, 0.39221582)
+quantity = 5
+
+[node name="Apple5" parent="." unique_id=628911828 instance=ExtResource("2_tm3r7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8760602, 0.40366134, 1.2600046)
+quantity = 5
+
+[node name="Apple6" parent="." unique_id=1394383317 instance=ExtResource("2_tm3r7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8760602, 0.40366134, 2.425425)
+quantity = 5
+
+[node name="Apple7" parent="." unique_id=1481291692 instance=ExtResource("2_tm3r7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8760602, 0.40366134, 2.425425)
+quantity = 5

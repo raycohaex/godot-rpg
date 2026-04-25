@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://bbq34nfq25pa1"]
+
+[ext_resource type="Script" uid="uid://bmaopl3cstqta" path="res://Scripts/Inventory/inventory_item_ui.gd" id="1_swma0"]
+[ext_resource type="Texture2D" uid="uid://xkle7pvtyb23" path="res://Icons/Food/Apple/apple.png" id="2_okr2p"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_onc37"]
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+
+[node name="InventoryItemUI" type="Control" unique_id=1779192981]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_swma0")
+
+[node name="ItemImage" type="TextureRect" parent="." unique_id=54194228]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_okr2p")
+expand_mode = 1
+
+[node name="ItemLabel" type="Label" parent="." unique_id=2011901372]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+label_settings = SubResource("LabelSettings_onc37")
+horizontal_alignment = 2
+vertical_alignment = 2

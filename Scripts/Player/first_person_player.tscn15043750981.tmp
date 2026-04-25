@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://crr3vvbg5fhfk"]
+
+[ext_resource type="Script" uid="uid://cway0rbkpb11j" path="res://Scripts/Player/player.gd" id="1_pg5qe"]
+[ext_resource type="Script" uid="uid://dcw6jtas7corx" path="res://Scripts/Player/player_input.gd" id="2_iwju1"]
+[ext_resource type="Script" uid="uid://be7k77hj5uypo" path="res://Scripts/Player/state_machine.gd" id="3_5wo68"]
+[ext_resource type="Script" uid="uid://nteroore3sjt" path="res://Scripts/Player/States/player_idle_state.gd" id="4_jeno5"]
+[ext_resource type="Script" uid="uid://k5t0yb4fn3da" path="res://Scripts/Player/States/player_walk_state.gd" id="5_56rcj"]
+[ext_resource type="Script" uid="uid://cf5eq0ldhcajm" path="res://Scripts/Player/States/play_in-air_state.gd" id="6_wcedg"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_86ru7"]
+
+[node name="FirstPersonCharacter3D" type="CharacterBody3D" unique_id=1827426903]
+script = ExtResource("1_pg5qe")
+max_speed = 8.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=361755834]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_86ru7")
+
+[node name="Head" type="Node3D" parent="." unique_id=978442902]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Head" unique_id=1988166939]
+
+[node name="PlayerInput" type="Node" parent="." unique_id=664747884]
+script = ExtResource("2_iwju1")
+
+[node name="StateMachine" type="Node" parent="." unique_id=1186549724 node_paths=PackedStringArray("initial_state")]
+script = ExtResource("3_5wo68")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine" unique_id=1211904703 node_paths=PackedStringArray("input", "camera")]
+script = ExtResource("4_jeno5")
+input = NodePath("../../PlayerInput")
+camera = NodePath("../../Head/Camera3D")
+
+[node name="Walk" type="Node" parent="StateMachine" unique_id=804640028 node_paths=PackedStringArray("input", "camera")]
+script = ExtResource("5_56rcj")
+input = NodePath("../../PlayerInput")
+camera = NodePath("../../Head/Camera3D")
+bob_frequency = 8.0
+bob_amplitude = 0.06
+
+[node name="InAir" type="Node" parent="StateMachine" unique_id=556538596 node_paths=PackedStringArray("input")]
+script = ExtResource("6_wcedg")
+input = NodePath("../../PlayerInput")

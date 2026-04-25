@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://d7j827glattc"]
+
+[ext_resource type="PackedScene" uid="uid://crr3vvbg5fhfk" path="res://Scripts/Player/first_person_player.tscn" id="1_d14j6"]
+[ext_resource type="PackedScene" uid="uid://dtpaukmvyhpck" path="res://Scene/Items/Food/apple.tscn" id="2_tm3r7"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_tm3r7"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_d14j6"]
+
+[sub_resource type="Sky" id="Sky_tm3r7"]
+sky_material = SubResource("ProceduralSkyMaterial_d14j6")
+
+[sub_resource type="Environment" id="Environment_86ru7"]
+background_mode = 2
+sky = SubResource("Sky_tm3r7")
+ambient_light_source = 3
+ambient_light_color = Color(0.42365062, 0.42365065, 0.42365062, 1)
+
+[node name="Main" type="Node3D" unique_id=1178813936]
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="." unique_id=165502057]
+transform = Transform3D(35.31426, 0, 0, 0, 0.7102941, 0, 0, 0, 35.24144, 0, -0.37026107, 0)
+use_collision = true
+mesh = SubResource("BoxMesh_tm3r7")
+
+[node name="CharacterBody3D" parent="." unique_id=1827426903 instance=ExtResource("1_d14j6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.005822897, 0, 0.003782034)
+
+[node name="Lighting" type="Node3D" parent="." unique_id=972447620]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Lighting" unique_id=841525790]
+environment = SubResource("Environment_86ru7")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Lighting" unique_id=4676018]
+transform = Transform3D(0.94273466, -0.051838458, 0.3294907, -0.33354366, -0.14651732, 0.9312795, 0, -0.987849, -0.15541734, 0, 4.6541743, 0)
+
+[node name="Apple" parent="." unique_id=1766726480 instance=ExtResource("2_tm3r7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3113785, 0.5904931, 3.1416414)
+quantity = 60
+
+[node name="Apple9" parent="." unique_id=1887110843 instance=ExtResource("2_tm3r7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4745741, 0.5904931, 3.1416414)
+quantity = 60
+
+[node name="Apple10" parent="." unique_id=1617066137 instance=ExtResource("2_tm3r7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.64803433, 0.5904931, 3.1416414)
+quantity = 60
+
+[node name="Apple2" parent="." unique_id=2028717341 instance=ExtResource("2_tm3r7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.42632926, 0.15218224, 0.5741151)
+
+[node name="Apple3" parent="." unique_id=1453427860 instance=ExtResource("2_tm3r7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.42632926, 0.15218224, 0.22033125)
+
+[node name="Apple4" parent="." unique_id=631081065 instance=ExtResource("2_tm3r7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3042878, 0.15218224, 0.22033125)
+
+[node name="Apple5" parent="." unique_id=650437375 instance=ExtResource("2_tm3r7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3042878, 0.15218224, -0.32907426)
+
+[node name="Apple6" parent="." unique_id=783240465 instance=ExtResource("2_tm3r7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3042878, 0.15218224, -0.9314981)
+
+[node name="Apple7" parent="." unique_id=1024115488 instance=ExtResource("2_tm3r7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3042878, 0.15218224, -1.6266382)
+
+[node name="Apple8" parent="." unique_id=781497654 instance=ExtResource("2_tm3r7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6517487, 0.15218224, -1.6266382)

@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://bhwe6vydkj2eg"]
+
+[ext_resource type="Script" uid="uid://b5sewdji0knuw" path="res://Scripts/Inventory/inventory_ui.gd" id="1_5lit7"]
+[ext_resource type="PackedScene" uid="uid://bbq34nfq25pa1" path="res://Scene/Inventory/inventory_item_ui.tscn" id="2_4msr4"]
+
+[node name="InventoryUI" type="Control" unique_id=1783148493]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5lit7")
+item_ui_scene = ExtResource("2_4msr4")
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=915039005]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="BoardWrapper" type="Control" parent="CenterContainer" unique_id=289562950]
+custom_minimum_size = Vector2(320, 160)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="BackgroundPanel" type="PanelContainer" parent="CenterContainer/BoardWrapper" unique_id=149876673 groups=["item_drop_zone"]]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ItemContainer" type="Control" parent="CenterContainer/BoardWrapper" unique_id=50467138]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[connection signal="mouse_entered" from="CenterContainer/BoardWrapper/BackgroundPanel" to="." method="_on_background_panel_mouse_entered"]
+[connection signal="mouse_exited" from="CenterContainer/BoardWrapper/BackgroundPanel" to="." method="_on_background_panel_mouse_exited"]

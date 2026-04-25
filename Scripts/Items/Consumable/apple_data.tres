@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://cs63jrkufukqu"]
+
+[ext_resource type="Script" uid="uid://bvxkiikw5hj50" path="res://Scripts/Items/item_data.gd" id="1_6ua46"]
+[ext_resource type="Texture2D" uid="uid://xkle7pvtyb23" path="res://Icons/Food/Apple/apple.png" id="1_e6kev"]
+[ext_resource type="Script" uid="uid://bmggow0ovsel4" path="res://Scripts/Items/item_trait.gd" id="1_gu34y"]
+[ext_resource type="PackedScene" uid="uid://dtpaukmvyhpck" path="res://Scene/Items/Food/apple.tscn" id="1_xsmjl"]
+[ext_resource type="Script" uid="uid://c2kstrxa4elnl" path="res://Scripts/Items/Traits/consumable_trait.gd" id="2_s8grm"]
+
+[sub_resource type="Resource" id="Resource_e6kev"]
+script = ExtResource("2_s8grm")
+metadata/_custom_type_script = "uid://c2kstrxa4elnl"
+
+[resource]
+script = ExtResource("1_6ua46")
+id = &"apple"
+item_name = "Apple"
+item_grid_size = Vector2i(1, 1)
+item_traits = Array[ExtResource("1_gu34y")]([SubResource("Resource_e6kev")])
+icon = ExtResource("1_e6kev")
+drop_scene = ExtResource("1_xsmjl")
+metadata/_custom_type_script = "uid://bvxkiikw5hj50"

@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://dtpaukmvyhpck"]
+
+[ext_resource type="Script" uid="uid://dldkj54wlgayv" path="res://Scripts/Items/item_pickup.gd" id="1_358fr"]
+[ext_resource type="PackedScene" uid="uid://bphcg44tr0na5" path="res://Models/Food/Apple/scene.gltf" id="3_p6nrq"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_86ru7"]
+radius = 0.14833972
+
+[node name="Apple" type="RigidBody3D" unique_id=1766726480 groups=["item"]]
+collision_layer = 4
+script = ExtResource("1_358fr")
+id = &"apple"
+
+[node name="Sketchfab_Scene" parent="." unique_id=623891449 instance=ExtResource("3_p6nrq")]
+transform = Transform3D(0.16570711, 0, 0, 0, 0.16570711, 0, 0, 0, 0.16570711, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=303953529]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.03520453, 0)
+shape = SubResource("SphereShape3D_86ru7")
